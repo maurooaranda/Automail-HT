@@ -1,0 +1,165 @@
+﻿Copyright (C) 2018. Mauro Aranda
+
+***********************************
+*Cambios en AutomatizadorMails 3.0*
+***********************************
+
+** No es más requisito que la celda con id de equipo esté solo con formatos en número.
+Ahora se acepta [teamid=ID]
+
+** No es más requisito que la celda con id de equipo esté completa.
+En caso de no estarlo, el programa obtiene el ID del equipo a través de la página del jugador juvenil.
+Notar que es obligatorio el id del jugador juvenil.
+
+Nota: Todavía no está implementado para jugadores en el equipo mayor.
+
+** Ahora puede especificarse una lista de IDs de equipos omitidos ("Lista Negra"), para evitar 
+andarles Mails e importunarlos. Los mismos han de cargarse en la Hoja "Equipos Omitidos", en la columna
+A.
+
+** Ahora se crea un archivo "fallidos.txt" en la carpeta donde esté guardado el Automatizador,
+que reporta los nombres de los jugadores con los que falló el envío del Mail.
+El reporte del fallo incluye 2 categorías: Manager en la lista negra, o fallo propio de Hattrick.
+Dentro de fallo propio de Hattrick, puede ser que el equipo sea BOT, que el usuario se quiso
+autoenviar un Mail, etcétera, pero hasta ahora el programa no reporta ese motivo específico.
+
+***********************************
+*Cambios en AutomatizadorMails 2.0*
+***********************************
+
+** Ahora es posible cambiar el asunto de los mails enviados.
+Siguiendo una lógica similar a la usada para el contenido del mail, es posible
+especificar en el archivo .txt el asunto. El único requisito es que esté rodeado
+de las etiquetas [asunto][/asunto] y que luego lo siga una línea en blanco.
+Ejemplo:
+[asunto]{0} {1}[/asunto]
+
+Texto a mandar.
+
+** No es más requisito que la celda con id de jugador no contenga letras.
+Debido a que el archivo obtenido del EGO contiene en cada fila de id el formato
+[youthplayerid=ID], se ha adaptado el programa para utilizar directamente esos
+datos. De esta manera, el automatizador funciona con:
+1. ID - como venía funcionando desde la versión 1.0
+2. [playerid=ID] 
+3. [youthplayerid=ID]
+
+En el caso de usar la opción 2 o 3, si en el asunto se quiere mandar el ID del
+jugador, se eliminarán los tags correspondientes. En el .txt, solo será
+necesario especificar {1} y _no_ [playerid={1}] o el correspondiente para el
+juvenil. Usando la opción 1, sigue siendo necesari.
+
+Tener en cuenta que no es posible combinar las opciones por el momento. Esto
+quiere decir que debe haber consistencia con los datos usados en la enviada.
+Sin embargo, se puede cambiar de formato de una enviada a la otra, ya que no es
+necesaria ninguna modificación adicional.
+
+** Evitar errores si el equipo es BOT, o si nos autoenviamos un HT-Mail
+En la versión 1.0, el programa fallaba y detenía todo funcionamiento, muchas
+veces sin indicar exactamente donde falló.
+
+La versión 2.0 es más robusta en ese sentido, permitiendo continuar la ejecución
+y entregando un informe final de fallos, si es que lo existieran.
+
+El informe final es un cartel con los nombres de los jugadores que fallaron,
+así que en ese caso, debe tomarse nota.
+
+** Ahora es posible mandar más de un tipo de mail.
+Se ha creado una columna donde puede especificarse, mediante un número entero,
+un mensaje a enviar. Por ejemplo, si queremos enviar 2 mails distintos a 2
+jugadores, en la columna correspondiente debemos especificar "1" para el jugador
+1 y "2" para el jugador 2. De esta manera, el programa nos pedirá los 2 mensajes
+que queremos enviar, especificando cuál mensaje se está pidiendo.
+
+Si decidimos ignorar esta nueva función, solo basta con dejar la línea en blanco. Así, el programa interpreta que solo queremos enviar 1 tipo de mensaje.
+
+Aclaración: los números deben seguir un orden. Es decir, si ponemos "1", el próximo
+número a poner debe ser "2", y así. Si se introduce "1" - "3" - "4" - "6" se
+confundirá al programa.
+
+** Agregado de columna para especificar un thread.
+Ahora es posible agregar en una celda el número de thread al que se quiere
+referir al mánager. De esta manera, resulta más fácil modificarlo cuando se cierre.
+Su código está debidamente identificado en la hoja "Instrucciones", y en el texto
+se debe especificar como: [post={clave}]
+
+** Agregado de columna con apodo para jugador
+Como los juveniles no cuentan con apodo, pero los mánagers o los scouts pueden
+inventárselo, se ha agregado una columna para personalizar aún más el mensaje.
+El apodo es agregado justo antes del apellido, y es rodeado por el símbolo '.
+
+** Ahora es posible elegir la espera entre cada mail.
+Para hacer más personalizable el envío y la demora del programa, es posible
+elegir la cantidad de segundos que la aplicación espera entre mail y mail.
+El mismo debe ser un valor entre 15 y 120 segundos.
+
+** Solución al error '7': No se encuentra la casilla de asunto del mensaje.
+Este es un error que aparece cuando el programa le gana a la página web, que
+no llega a hacer disponible la casilla de asunto. Se ha intentado una solución,
+pero no está verificado que sea definitiva.
+
+** Información de que está pasando a cada momento.
+Ahora Excel comunica al usuario que acción está realizando a cada momento, así
+como la cantidad de mensajes a mandar, el tiempo estimado de demora del proceso,
+cuantos segundos está esperando, etc.
+
+** Evitar error si el usuario introdujo mal la información de logueo.
+Como es posible equivocarse a la hora de brindar la información, si el programa
+no puede loguearse, entonces esperará 10 segundos para que el usuario
+introduzca manualmente la información. De no hacerlo, volverá a esperar 10 segundos
+y así sucesivamente. Si se quier salir, solo basta con cerrar el navegador.
+De esta manera, también es posible ahora hacer errar el logueo a propósito,
+para introducir los datos directamente en HT.
+
+** Agregado de columna de nombre real del mánager
+Nuevamente, con el objetivo de personalizar aún más el mensaje, es posible
+agregar el nombre real del mánager. De esta manera, si es alguien que ya
+conocemos, el automatizador en vez de tomar el nombre de usuario de HT, tomará
+el nombre que le brindemos.
+
+** Agregado de columna de % de Condición
+Esta nueva característica está pensada para ampliar el uso de la herramienta a
+Scouts U20 y Scouts Mayor, que les permita en una tanda mandar la modificación
+al porcentaje de condición que debe hacer el mánager en el Entrenamiento.
+
+Solamente debe agregarse el número. Ejemplo: Si queremos que un mánager pase
+a entrenar 20 % de condición, sólo debemos poner: 20 en la columna especificada.
+
+* Problemas Conocidos en el Automatizador de Mails versión 2.0
+
+** Firefox abre pero no ingresa a HT.
+Este es un problema de comunicación interna entre el interpretador de código
+y la tecnología de Windows que permite la comunicación entre programas.
+Se ha observado que suele ocurrir después de un fallo del programa, pero como
+los fallos se han disminuido, es de esperar que ocurra con menos frecuencia.
+No hay solución al 100% de este problema, y la única forma de superarlo es
+reiniciar la PC, por el momento.
+
+** Error '21' en tiempo de ejecución.
+TimeoutError
+Firefox failed to open the listening port ... within 15s
+
+Este es el error que aparece en versiones posteriores a la recomendada de
+Firefox. Para solucionarlo, se deben seguir las instrucciones brindadas, para
+instalar la versión de Firefox que funciona y evitar que se actualiec.
+
+** Error '7'
+Este error aparece cuando se carga de forma lenta la página para mandar mails.
+Es probable que se haya solucionado.
+
+
+^L
+This file is part of Automatizador de HT-Mails.
+
+Automatizador de HT-Mails is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Automatizador de HT-Mails is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Automatizador de HT-Mails.  If not, see <https://www.gnu.org/licenses/>.

@@ -1,0 +1,53 @@
+Copyright (C) 2018. Mauro Aranda
+
+Automatizador de HT-Mails
+
+Este programa intentará ser instalado de dos distintas maneras:
+* A través del código fuente
+* A través de una distribución en un archivo comprimido.
+Dependiendo cuál sea la forma conveniente, contactame a maurooaranda@gmail.com
+en caso de que se presente un problema.
+
+Solamente con instalarlo no es suficiente.  Nuestro sistema necesita tener un
+navegador soportado (Firefox o Chrome), y su WebDriver correspondiente.
+Ambos software pueden encontrarse e instalarse a través de internet.  Si
+necesitás ayuda en cuanto a la compatibilidad, contactame a
+maurooaranda@gmail.com
+
+
+Las dependencias de este programa, en su versión 4.0, son:
+* Python 2.7
+* Módulo Tkinter (por defecto en instalaciones de Python)
+* Módulo Selenium de Python.
+* Módulo openpyxl de Python: https://bitbucket.org/openpyxl/openpyxl
+* Navegador web Firefox
+* Webdriver: Geckodriver
+
+
+El ambiente en el que ha sido testeado este programa es:
+GNU/Linux Ubuntu 16.04.1
+Python 2.7.12
+Tkinter 8.6
+Selenium 3.13.0
+Openpyxl 2.5.5
+Firefox 61.0.1
+Geckodriver 0.21.0
+
+Por favor, si en tu sistema este programa funciona, avisame, para
+tener un seguimiento de ellos.
+
+^L
+This file is part of Automatizador de HT-Mails.
+
+Automatizador de HT-Mails is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Automatizador de HT-Mails is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Automatizador de HT-Mails.  If not, see <https://www.gnu.org/licenses/>.

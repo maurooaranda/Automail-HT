@@ -1,0 +1,46 @@
+Automatizador de HT-Mails: Lista de TODOs
+
+Copyright (C) 2018. Mauro Aranda
+
+Los TODOs son características que podrían implementarse en el código fuente
+del programa.
+En este archivo se recopilan alguno de los TODOs, y otros pueden encontrarse
+leyendo el código fuente.
+
+* Mejorar la instalación
+Actualmente, el software se distribuye en un archivo comprimido, para que el
+usuario lo descomprima en una carpeta de su gusto.  Se espera que el usuario
+tenga `python' instalado, y que pueda resolver todas las dependencias de
+librerías manualmente.  Esta no es la mejor forma de distribuir este software,
+por lo que el uso del módulo `setuptools' para usuarios de GNU/Linux, o de
+"python freezers" como `py2exe' o `pyinstaller' debería ser explorado.
+
+* Soportar nuevos navegadores, como Chrome (o en defecto, Chromium) y Opera
+
+* Agregar información de por qué falló el envío de un HT-Mail.
+
+* Permitir que el Automatizador de HT-Mails utilice extensiones web
+El uso de extensiones web como el mailer de sub17, o incluso Foxtrick,
+beneficiarían mucho al trabajo del Automatizador.
+
+* Asegurar soporte para Open Document Format
+Actualmente se usa el módulo openpyxl, que asegura poder trabajar con
+archivos Excel 2007 o mayores.  Dado que LibreOffice puede manipular estos
+archivos (leer y guardar), es posible el uso de LibreOffice con la planilla
+de datos.  Una mejora sería asegurar el soporte para archivos *.ods.
+
+^L
+This file is part of Automatizador de HT-Mails.
+
+Automatizador de HT-Mails is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Automatizador de HT-Mails is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Automatizador de HT-Mails.  If not, see <https://www.gnu.org/licenses/>.
