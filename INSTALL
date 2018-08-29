@@ -1,27 +1,48 @@
-Copyright (C) 2018. Mauro Aranda
+Copyright (C) 2018. Mauro Aranda                                  -*-outline-*-
 
 Automail-HT
 
-Este programa intentará ser instalado de dos distintas maneras:
-* A través del código fuente.
-* A través de una distribución en un archivo comprimido.
-Dependiendo cuál sea la forma conveniente, contactame a maurooaranda@gmail.com
-en caso de que se presente un problema.
+Este programa puede ser instalado de dos distintas maneras:
+* Clonando el repositorio del programa con git.
+Puedes obtener el código fuente de Automail-HT a través de github, usando
+`git clone https://github.com/maurooaranda/Automail-HT" /some/path'.
+Luego, si tienes las dependencias de Python instaladas (ver más abajo) y un
+webdriver soportado (como el webdriver 'geckodriver' de Firefox, o el webdriver
+'chromedriver' de Chrome), solo con ejecutar el archivo src/HTMails.py es
+suficiente:
+En GNU/Linux o Windows: `python path/to/src/HTMails.py'.
+En GNU/Linux: `./path/to/src/HTMails.py'.
 
-Solamente con instalarlo no es suficiente.  Nuestro sistema necesita tener un
-navegador soportado (Firefox o Chrome), y su WebDriver correspondiente.
-Ambos software pueden encontrarse e instalarse a través de internet.  Si
+* A través de una distribución del código fuente en un archivo comprimido.
+Puedes obtener un archivo comprimido del código fuente a través de GitHub.
+También se distribuirán a través de lanzamientos (o releases), archivos
+comprimidos con todos los archivos necesarios para la ejecución.
+
+* A través de una distribución de un binario en un archivo comprimido
+En los releases, también se añadirá un archivo comprimido que contiene un
+ejecutable (binario), apto para ser ejecutado en las siguientes plataformas:
+Windows 32-bits.
+Puedes descargarlo y ejecutarlo, tal como harías con cualquier otro programa.
+Puedes poner un acceso directo para que te sea más sencillo acceder a él, si
+lo consideras conveniente.
+
+Ten en cuenta que con solo instalarlo no es suficiente.  Tu sistema necesita
+tener un navegador soportado (Firefox o Chrome), y su WebDriver correspondiente.
+Ambos softwares pueden encontrarse e instalarse a través de internet.  Si
 necesitás ayuda en cuanto a la compatibilidad, contactame a
 maurooaranda@gmail.com
 
 
 Las dependencias de este programa, en su versión 4.0, son:
 * Python 2.7
-* Módulo Tkinter (por defecto en instalaciones de Python)
-* Módulo Selenium de Python.
-* Módulo openpyxl de Python: https://bitbucket.org/openpyxl/openpyxl
-* Navegador web Firefox (o Chrome)
-* Webdriver: Geckodriver (o Chrome WebDriver)
+* Módulo Tkinter (por defecto en la mayoría de las instalaciones de Python)
+https://github.com/python/cpython/tree/master/Lib/tkinter
+* Módulo Selenium de Python
+https://www.seleniumhq.org/
+* Módulo openpyxl de Python
+https://bitbucket.org/openpyxl/openpyxl
+* Navegador web Firefox o Chrome
+* Webdriver: Geckodriver o Chrome WebDriver
 
 
 El ambiente en el que ha sido testeado este programa es:

@@ -1,4 +1,4 @@
-Automail-HT: Lista de TODOs
+Automail-HT: Lista de TODOs                             -*-outline-*-
 
 Copyright (C) 2018. Mauro Aranda
 
@@ -7,15 +7,11 @@ del programa.
 En este archivo se recopilan alguno de los TODOs, y otros pueden encontrarse
 leyendo el código fuente.
 
-* Mejorar la instalación
-Actualmente, el software se distribuye en un archivo comprimido, para que el
-usuario lo descomprima en una carpeta de su gusto.  Se espera que el usuario
-tenga `python' instalado, y que pueda resolver todas las dependencias de
-librerías manualmente.  Esta no es la mejor forma de distribuir este software,
-por lo que el uso del módulo `setuptools' para usuarios de GNU/Linux, o de
-"python freezers" como `py2exe' o `pyinstaller' debería ser explorado.
-
-* Soportar nuevos navegadores, como Chrome (o en defecto, Chromium) y Opera
+* Hacerlo disponible para plataformas 64 bits
+El python freezer usado (pyinstaller) solo permite la creación de binarios
+nativos.  Esto significa que un binario para una máquina 64 bits ha de ser
+creado en una máquina 64 bits.  No tengo acceso a tales máquinas, pero
+agradezco si alguno quiere colaborar con la creación de este binario.
 
 * Agregar información de por qué falló el envío de un HT-Mail.
 

@@ -1,4 +1,4 @@
-Problemas conocidos de Automail-HT
+Problemas conocidos de Automail-HT                         -*-outline-*-
 
 Copyright (C) 2018. Mauro Aranda
 
@@ -11,8 +11,9 @@ otras palabras, no se les envía un HT-Mail), en el archivo fallidos.txt no se
 muestra tal información, como sí lo hacía la versión 3.2.
 Esta característica podría incorporarse en próximas versiones.
 
-* Soporte de un solo navegador (Firefox)
-Actualmente, solo se soporta el uso de Firefox (junto con geckodriver).
+* Soporte de sólo dos navegadores: Firefox y Chrome
+Actualmente, solo se soporta el uso de Firefox (junto con geckodriver) y de
+Chrome (via chromedriver).
 El agregado de nuevos navegadores se considerará en futuras versiones.
 
 ^L
