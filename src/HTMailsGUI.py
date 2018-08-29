@@ -222,6 +222,7 @@ class GUI(Tk):
 
         try:
             config_file = open(get_thisfile_directory() + os.pardir + \
+<<<<<<< HEAD
                               os.sep + "config.json")
             default_values = json.load(config_file)
             config_file.close()
@@ -231,6 +232,12 @@ class GUI(Tk):
             self.user.set("")
             self.combo_webdriver.set(self.combo_webdriver["values"][0])
             self.default_directory = os.path.expanduser("~")
+=======
+                               os.sep + "config.json")
+            default_values = json.load(config_file)
+            config_file.close()
+        except IOError:
+>>>>>>> 2141ac06a8328fec3b1f58c0ac9397f5b4db5c6d
             showinfo("Error", "No pudo abrirse el archivo config.json")
         else:
             self.user.set(default_values["Usuario"])
@@ -246,8 +253,13 @@ class GUI(Tk):
             if (default_values["Directorio Default"] == "~"):
                 self.default_directory = os.path.expanduser("~")
             elif (default_values["Directorio Default"] == "src"):
+<<<<<<< HEAD
                 self.default_directory = get_thisfile_directory() + \
                     os.pardir + os.sep
+=======
+                self.default_directory = get_thisfile_directory() + os.pardir + \
+                    os.sep
+>>>>>>> 2141ac06a8328fec3b1f58c0ac9397f5b4db5c6d
             else:
                 self.default_directory = default_values["Directorio Default"]
                 
