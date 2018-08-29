@@ -241,8 +241,8 @@ class GUI(Tk):
             if (default_values["Directorio Default"] == "~"):
                 self.default_directory = os.path.expanduser("~")
             elif (default_values["Directorio Default"] == "src"):
-                self.default_directory = get_thisfile_directory() + os.pardir + \
-                    os.sep
+                self.default_directory = get_thisfile_directory() + \
+                    os.pardir + os.sep
             else:
                 self.default_directory = default_values["Directorio Default"]
                 
@@ -270,7 +270,10 @@ class GUI(Tk):
         total_messages = self.htmails_file.get_total_messages()
 
         for message in range(total_messages):
-            file_path = tkFileDialog.askopenfilename(initialdir = self.default_directory, title = "Selecciona el mensaje " + str(message + 1),                                                               filetypes = [("Text files", "*.txt")])
+            file_path = tkFileDialog.askopenfilename(
+                initialdir = self.default_directory,
+                title = "Selecciona el mensaje " + str(message + 1),
+                filetypes = [("Text files", "*.txt")])
 
             message_paths.append(file_path)
 
