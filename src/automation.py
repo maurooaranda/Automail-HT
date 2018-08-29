@@ -25,10 +25,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
-from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support.select import Select
 from selenium.webdriver.firefox.options import Options
 
 # To know address of src files
@@ -38,15 +36,12 @@ import HTMailsGUI
 from httplib import BadStatusLine
 
 # system related imports
-import errno
 import os
-import re
-import sys
 
 import json
 
 # TODO: Save the value of time to wait for Explicit Waits,
-# So it is easy to adapt.
+# So it is easier to adapt.
             
 class ht_driver():
     """Class that performs automation of HT web page"""
@@ -57,7 +52,8 @@ class ht_driver():
         # We'll need them if using the extension
 
         if driver == "Firefox":
-        
+
+            # Comment it for now, to use when using web extension.
             # try:
             #     f = open(HTMailsGUI.get_thisfile_directory() + os.pardir + \
                 #              os.sep + "data" + os.sep + "pathToProfile.txt", "r")
@@ -70,27 +66,8 @@ class ht_driver():
             
             # # Create Firefox Profile
             # fp = webdriver.FirefoxProfile(profile_path)
-            
-            # Set preferences for Firefox Profile
-            
-            # TODO: Check what is needed here
-            options = Options()
-            
-            # options.set_preference("browser.download.folderList", 2)
-            # options.set_preference("browser.download.manager.showWhenStarting",
-            #                        False)
-            # options.set_preference("browser.download.dir", self.backupPath)
-            # options.set_preference("browser.download.useDownloadDir", True)
-            # options.set_preference("browser.download.manager.alertOnEXEOpen", False)
-            # options.set_preference("browser.download.manager.focusWhenStarting",
-            #                        False)
-            # options.set_preference("browser.helperApps.alwaysAsk.force", False)
-            # options.set_preference("browser.download.manager.closeWhenDone", True)
-            # options.set_preference("browser.download.manager.showAlertOnComplete",
-            #                        False)
-            # options.set_preference("browser.manager.useWindow", False)
-            # options.set_preference("services.sync.prefs.sync.browser.download.manager.showWhenStarting", False)
-            # options.set_preference("pdfjs.disabled", True)
+        
+            options = Options()            
 
             # Initialize webdriver
             # self.driver = webdriver.Firefox(firefox_profile = fp,
@@ -98,6 +75,7 @@ class ht_driver():
 
             self.driver = webdriver.Firefox(firefox_options = options)
 
+        # FIXME: Maybe more webdrivers will come.
         else:
             self.driver = webdriver.Chrome()
             
