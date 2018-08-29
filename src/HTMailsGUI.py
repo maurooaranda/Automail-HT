@@ -231,6 +231,7 @@ class GUI(Tk):
             self.user.set("")
             self.combo_webdriver.set(self.combo_webdriver["values"][0])
             self.default_directory = os.path.expanduser("~")
+            showinfo("Error", "No pudo abrirse el archivo config.json")
         else:
             self.user.set(default_values["Usuario"])
 
