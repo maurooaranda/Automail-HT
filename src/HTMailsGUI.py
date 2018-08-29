@@ -5,18 +5,21 @@
 
 # This file is part of Automatizador de HT-Mails.
 
-# Automatizador de HT-Mails is free software: you can redistribute it and/or modify
+# This file is part of Automail-HT.
+
+# Automail-HT free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 
-# Automatizador de HT-Mails is distributed in the hope that it will be useful,
+# Automail-HT is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
 # You should have received a copy of the GNU General Public License
-# along with Automatizador de HT-Mails.  If not, see <https://www.gnu.org/licenses/>.
+# along with Automail-HT.  If not, see <https://www.gnu.org/licenses/>.
+
 
 # HTMailsGUI.py: This is the HTMails Automation GUI
 

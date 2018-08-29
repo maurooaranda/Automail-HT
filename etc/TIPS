@@ -1,6 +1,6 @@
 Copyright (C) 2018. Mauro Aranda.
 
-Este archivo contiene tips para usar el Automatizador de HT-Mails.
+Este archivo contiene tips para usar Automail-HT.
 Tiene el objetivo de ser una versión primitiva de un pequeño manual que
 acompañará al software para su uso, y que idealmente se concretará en el
 futuro.
@@ -93,47 +93,17 @@ rápido al archivo, ya que se comienza el diálogo de selección de archivo en e
 directorio por defecto.
 
 ^L
-This file is part of Automatizador de HT-Mails.
+This file is part of Automail-HT
 
-Automatizador de HT-Mails is free software: you can redistribute it and/or modify
+Automail-HT is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-Automatizador de HT-Mails is distributed in the hope that it will be useful,
+Automail-HT is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Automatizador de HT-Mails.  If not, see <https://www.gnu.org/licenses/>.
-^L
-This file is part of Automatizador de HT-Mails.
-
-Automatizador de HT-Mails is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-Automatizador de HT-Mails is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with Automatizador de HT-Mails.  If not, see <https://www.gnu.org/licenses/>.
-^L
-This file is part of Automatizador de HT-Mails.
-
-Automatizador de HT-Mails is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-Automatizador de HT-Mails is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with Automatizador de HT-Mails.  If not, see <https://www.gnu.org/licenses/>.
+along with Automail-HT.  If not, see <https://www.gnu.org/licenses/>.
