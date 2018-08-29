@@ -1,0 +1,12 @@
+*~
+*.pyc
+*.json
+*.xlsm
+*.log
+*.pdf
+*.man
+*.info
+*.dvi
+*.png
+*.ico
+*.txt
