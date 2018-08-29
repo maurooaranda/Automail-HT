@@ -1,0 +1,34 @@
+Automail-HT: Historia de cambios
+
+Copyright (C) 2018. Mauro Aranda
+
+Este archivo contiene las novedades para la versión 4.0 de Automail-HT
+Las novedades de versiones hasta la 3.2 pueden verse en el archivo NEWS-3x
+
+* Cambios en Automail-HT
+
+** Porteo a Python
+Automail-HT ha pasado de ser una Macro de Excel (escrito en VBScript y
+utilizando una implementación de Selenium para este lenguaje, SeleniumBasic)
+a ser un programa por sí mismo, escrito en Python y utilizando un binding a
+Selenum soportado por la misma gente que desarrolla este software.  Este cambio
+era necesario, ya que la tecnología de SeleniumBasic había quedado obsoleta.
+De esta forma, el automatizador puede ser usado en cualquier sistema en el que
+Python funcione, lo cuál resulta en una expansión muy grande de posibilidades.
+
+
+^L
+This file is part of Automail-HT
+
+Automail-HT is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Automail-HT is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Automail-HT.  If not, see <https://www.gnu.org/licenses/>.

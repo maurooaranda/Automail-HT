@@ -1,0 +1,109 @@
+Copyright (C) 2018. Mauro Aranda.
+
+Este archivo contiene tips para usar Automail-HT.
+Tiene el objetivo de ser una versión primitiva de un pequeño manual que
+acompañará al software para su uso, y que idealmente se concretará en el
+futuro.
+
+* Uso básico
+
+** Ejecución
+Dependiendo como ha sido la instalación, es posible ejecutar el automatizador
+de varias maneras, según nuestro ambiente.
+*** GNU/Linux
+La mayoría de las distribuciones de GNU/Linux vienen con `python', sea en su
+versión 2.7 o 3.x.  Para iniciar el automatizador, basta con ejecutar
+`python path/to/HTMails.py' desde una terminal.  Otra opción, si HTMails tiene
+permisos de ejecución, es ejecutar `./path/to/HTMails.py'.
+*** Windows
+Si cuentas con el código fuente y tienes `python' instalado, y agregado a tu
+PATH, entonces ejecutar `python path/to/HTMails.py' tal como en GNU/Linux,
+debería ser suficiente.
+Si en cambio cuentas con el ejecutable (un archivo .exe), entonces haciéndole
+doble click desde una interfaz gráfica, inicia el automatizador.
+
+** Interfaz Gráfica de Usuario
+La interfaz gráfica (GUI) del automatizador es muy sencilla.  Contamos con
+3 campos de texto: 2 editables (Usuario y contraseña, tal como en HT) y uno
+no editable (Planilla), donde se muestra la dirección de la planilla que se
+utilizará.
+Además, contamos con una lista desplegable para elegir que navegador se
+automatizará, y la opción (en la versión 4.0 deshabilitada) de hacer uso de
+una extensión web que facilita el mailing.
+Para comenzar la automatización, es necesario llenar los 2 campos editables,
+así como proveer de la planilla a utilizar y hacer click en el botón
+"Enviar HTMails".  Si se deja algún campo sin llenar, el programa señalará un
+error.
+Luego de esto, según el contenido de la columna "Mensajes" de la planilla,
+el programa pide que se le provean la cantidad de plantillas de mensajes
+necesarias.  Hacerlo incorrectamente, hará al programa señalar un error.
+Una vez hecho esto, la interacción con el programa ha finalizado.  El navegador
+elegido se ejecutará, mandando los HT-Mails que se le instruyó mandar.
+Una vez terminado el uso, hacer click en el botón "Salir" termina la ejecución
+del programa.
+
+** La hoja de datos (formato *.xls, y *.ods tal vez)
+Por limitaciones presentes, el formato de la hoja de datos es un poco estricto.
+*** Hojas
+Debe tener 3 hojas: "Instrucciones", "HT-Mails" y "Equipos Omitidos".  El orden
+no importa
+**** Hoja Instrucciones:
+Debe contener las palabras claves del *.txt, que no han de modificarse.
+Debe contener el orden de las columnas, que pueden modificarse.
+Debe contener preferencias extra: Segundos a esperar entre cada mensaje y un
+link a thread (si no se usan estas opciones, pueden dejarse vacías).
+**** Hoja HT-Mails:
+Debe contener, sin espacios, los datos necesarios para enviar los mails.  Esto
+es, al menos deben contener un ID de un jugador (sea del equipo mayor o de las
+inferiores) o un ID de un mánager, un número de mensaje (si sólo utilizás una
+plantilla, entonces con poner el número 1 a todas esas celdas alcanza), y
+los nombres de las columnas (los "headers"), deben coincidir con los de la
+hoja Instrucciones.
+No debe haber filas en blanco entre cada dato.
+**** Hoja Equipos Omitidos:
+Debe contener en la columna A, de la fila 2 en adelante, los id de los equipos
+a los que se ha de evitar mandarles un mensaje, en el formato [teamid=ID]
+
+
+* Valores por defecto
+El automatizador contiene un archivo, llamdo 'config.json', donde se guardan
+los valores por defecto que utiliza, en un formato JSON.  Pueden no resultar
+muy amigables con el usuario, por lo que más adelante podrían presentarse de
+otra manera.  Los valores por defecto pueden modificarse manualmente, o a
+través de la interfaz gráfica, utilizando la opción del Menú:
+Editar -> Valores por defecto.
+En el caso de querer volver a los valores de defecto de instalación, basta con
+tan sólo borrar el archivo 'config.json' (el automatizador lo creará de nuevo).
+
+** Usuario
+Esta opción es para ingresar por defecto tu usuario de HT, sin tener que
+tipearlo cada vez que ejecutas el programa.  En un futuro, podría agregarse
+la opción de también guardar la contraseña.
+
+** Navegador Default
+Esta opción permite elegir por defecto el navegador que se automatizará.
+Si el navegador especificado no es soportado, entonces se recurrirá a setear
+el valor de "Firefox".  Contactame, si preferirías que sea otro.
+
+** Directorio Default
+Para saber a qué usuarios se enviarán los mails, el automatizador usa planillas
+de cálculo (archivos de Excel u *.ods --al menos eso creo).  Para ello, el
+usuario debe especificar cuál es el archivo.  Esta opción permite acceder más
+rápido al archivo, ya que se comienza el diálogo de selección de archivo en el
+directorio por defecto.
+
+^L
+This file is part of Automail-HT
+
+Automail-HT is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Automail-HT is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Automail-HT.  If not, see <https://www.gnu.org/licenses/>.

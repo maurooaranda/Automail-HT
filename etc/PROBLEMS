@@ -1,0 +1,32 @@
+Problemas conocidos de Automail-HT
+
+Copyright (C) 2018. Mauro Aranda
+
+Este archivo contiene el enunciado (y posible descripción) de alguno de los
+problemas presentes en la versión 4.0 de Automail-HT.
+
+* Fallidos.txt no muestra información de por qué se falló al enviar un HT-Mail
+Si bien la lista de usuarios que no desean ser contactados se respeta (en
+otras palabras, no se les envía un HT-Mail), en el archivo fallidos.txt no se
+muestra tal información, como sí lo hacía la versión 3.2.
+Esta característica podría incorporarse en próximas versiones.
+
+* Soporte de un solo navegador (Firefox)
+Actualmente, solo se soporta el uso de Firefox (junto con geckodriver).
+El agregado de nuevos navegadores se considerará en futuras versiones.
+
+^L
+This file is part of Automail-HT
+
+Automail-HT is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Automail-HT is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Automail-HT.  If not, see <https://www.gnu.org/licenses/>.

@@ -1,0 +1,38 @@
+Copyright (C) 2018. Mauro Aranda
+
+Este directorio contiene la versión 4.0 de Automail-HT, para asistir a los
+integrantes de las Estructuras Argentinas de HT en el enviado de HT-Mails para
+contacto de usuarios, entre otras cosas.
+
+Para conocer bajo que licencia se distribuye este programa, por favor
+revisa el archivo COPYING.
+
+Para la instalación, por favor leer el archivo INSTALL de este
+directorio.
+
+Para conocer las novedades del software, por favor referirse al
+archivo NEWS.
+
+Para conocer los problemas actuales en la instalación o utilización,
+leer el archivo etc/PROBLEMS.
+
+Podrías encontrar bugs en esta versión.  Por favor, reportalos a la
+dirección maurooaranda@gmail.com.  Por favor, antes de reportarlos,
+asegúrate de que estos no estén reportados ya en etc/PROBLEMS.
+
+
+^L
+This file is part of Automail-HT
+
+Automail-HT is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Automail-HT is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Automail-HT.  If not, see <https://www.gnu.org/licenses/>.
