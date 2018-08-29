@@ -478,9 +478,13 @@ class GUI(Tk):
     def change_default_fields(self):
         """Change User default values"""
 
-        self.change_default_user()
-        self.change_default_directory()
-        self.change_default_webdriver()
+        try:
+            self.change_default_user()
+            self.change_default_directory()
+            self.change_default_webdriver()
+        except IOError:
+            # If config.json cannot be opened, then catch the error here.
+            showerror("Error", "No pudo abrirse el archivo 'config.json'")
 
     def change_default_user(self):
         """ Change default user"""
