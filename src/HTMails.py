@@ -35,7 +35,8 @@ try:
         
         default_values = {"Usuario": "", "Directorio Default": "src",
                           "Navegador Default": "Firefox"}
-        config_file = open('config.json', 'w')
+        config_file = open(HTMailsGUI.get_thisfile_directory() + \
+                           os.pardir + os.sep + 'config.json', 'w')
         json.dump(default_values, config_file)
         config_file.close()
 except IOError:
