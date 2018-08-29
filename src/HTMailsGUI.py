@@ -270,7 +270,10 @@ class GUI(Tk):
         total_messages = self.htmails_file.get_total_messages()
 
         for message in range(total_messages):
-            file_path = tkFileDialog.askopenfilename(initialdir = self.default_directory, title = "Selecciona el mensaje " + str(message + 1),                                                               filetypes = [("Text files", "*.txt")])
+            file_path = tkFileDialog.askopenfilename(
+                initialdir = self.default_directory,
+                title = "Selecciona el mensaje " + str(message + 1),
+                filetypes = [("Text files", "*.txt")])
 
             message_paths.append(file_path)
 
