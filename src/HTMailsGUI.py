@@ -519,6 +519,7 @@ class GUI(Tk):
     def destroy(self):
         self.quit()
 
+# TODO: Find a place where to put this functions.        
 def get_thisfile_directory():
     """Helper function for obtaining directory of the software"""
     
