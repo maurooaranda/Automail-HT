@@ -61,7 +61,7 @@ class GUI(Tk):
         # Overhead code, to initialise Tkinter Frame
         self.root = Tk.__init__(self)
         self.frame = Frame(self.root)
-        self.title("Automatizador de HT-Mails")
+        self.title("Automail-HT")
         self.geometry("650x275")
 
         # TODO: Add icon
@@ -520,17 +520,34 @@ class GUI(Tk):
         config_file.close()
     
     def show_manual(self):
-        # TODO
-        return None
+        manual_frame = Toplevel()
+        manual_frame.title("Manual")
+
+        msg = Label(manual_frame, text = "Por favor, lee el archivo etc/TIPS")
+        msg.pack()
     
     def show_information(self):
-        # TODO
-        return None
+        info_frame = Toplevel()
+        info_frame.title("Informacion")
+
+        msg = Label(info_frame, text = \
+                    """Este programa fue creado por Mauro Aranda.
+Version: 4.0
+mail: maurooaranda@gmail.com
+
+Copyright (C) 2018 Mauro Aranda.""")
+        msg.pack()
 
     def show_license(self):
-        # TODO
-        return None
-    
+        license_frame = Toplevel()
+        license_frame.title("Licencia")
+
+        msg = Label(license_frame, text = """Copyright (C) 2018 Mauro Aranda.
+        Automail-HT comes with ABSOLUTELY NO WARRANTY.
+        You may redistribute copies of Automail-HT
+        under the terms of the GNU General Public License.""")
+        msg.pack()
+
     def destroy(self):
         self.quit()
 
@@ -596,4 +613,4 @@ def dump_failed_email(failed_email, folder):
         f.close()
     except IOError:
         None
-    
+
