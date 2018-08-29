@@ -179,6 +179,12 @@ class GUI(Tk):
             Checkbutton(self, text = "Usar extension de HTMails",
                         variable = self.use_htmails_extension)
 
+        # Automation-HT won't ask for login info
+        self.no_login_info = IntVar()
+        self.chk_no_login_info = \
+            Checkbutton(self, text = "Poner información de logueo en HT",
+                        variable = self.no_login_info)
+
         # FIXME: Disable the checkbutton for now, until the web extension
         # is supported
         self.chk_use_htmails_extension.config(state = DISABLED)
@@ -203,6 +209,7 @@ class GUI(Tk):
         self.btn_select_spreadsheet.grid(row = 3, column = 2, sticky = W)
         self.combo_webdriver.grid(row = 1, column = 3, sticky = W)
         self.chk_use_htmails_extension.grid(row = 2, column = 3, sticky = W)
+        self.chk_no_login_info.grid(row = 3, column = 3, sticky = W)
 
     def fill_combobox(self, cbo, values):
         """Fills the combobox CBO, with VALUES"""
@@ -262,10 +269,18 @@ class GUI(Tk):
         
     def validate_entry(self):
         """Checks if textboxs are not empty"""
-        
-        return (self.user.get() != "" and \
-                self.password.get() != "" and \
-                self.spreadsheet_path.get() != "")
+
+        # Only check spreadsheet_path, if no_login_info is used.
+        if self.spreadsheet_path.get() != "":
+            if self.no_login_info.get() == 1:
+                return True
+            else:
+                return (self.user.get() != "" and self.password.get() != "")
+        else:
+            return False
+        # return (self.user.get() != "" and \
+        #         self.password.get() != "" and \
+        #         self.spreadsheet_path.get() != "")
 
     def get_message_paths(self):
         """Prompts the user for the paths to the messages templates to be 
@@ -328,8 +343,11 @@ class GUI(Tk):
                 # Start driver
                 self.driver = automation.ht_driver(self.combo_webdriver.get())
                 self.driver.visit_mainpage()
-                
-                login_values = [self.user.get(), self.password.get()]
+
+                if self.no_login_info:
+                    login_values = None
+                else:
+                    login_values = [self.user.get(), self.password.get()]
             
                 if self.driver.login(login_values):
                     # i holds the template message being used.
