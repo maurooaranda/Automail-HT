@@ -64,7 +64,7 @@ else:
 
         try:
             # Move the handlers.json (without it, the web extension could
-            # not be found.
+            # not be found)
             # FIXME: Is that so?
             f = open(HTMailsGUI.get_thisfile_directory() + os.pardir + \
                      os.sep + "data" + os.sep + "pathToProfile.txt", "r")
