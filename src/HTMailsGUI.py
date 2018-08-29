@@ -222,10 +222,15 @@ class GUI(Tk):
 
         try:
             config_file = open(get_thisfile_directory() + os.pardir + \
-                               os.sep + "config.json")
+                              os.sep + "config.json")
             default_values = json.load(config_file)
             config_file.close()
         except IOError:
+            # In case of failing to read config_file, do this to avoid
+            # excepcion when calling askopenfilename.  See Issue #1
+            self.user.set("")
+            self.combo_webdriver.set(self.combo_webdriver["values"][0])
+            self.default_directory = os.path.expanduser("~")
             showinfo("Error", "No pudo abrirse el archivo config.json")
         else:
             self.user.set(default_values["Usuario"])
