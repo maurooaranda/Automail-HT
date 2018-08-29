@@ -254,11 +254,11 @@ class GUI(Tk):
     def get_spreadsheet(self):
         """Prompts the user to find the path to the spreadsheet to be used"""
 
-        # TODO: Keep 'all files' for now, but should be *.xls or *.ods.
         self.spreadsheet_path.set(tkFileDialog.askopenfilename(
             initialdir = self.default_directory,
             title = "Selecciona la planilla",
-            filetypes = [("All files", "*.*")]))
+            filetypes = [("Hojas de datos", "*.xls* *.ods"),
+                         ("All files", "*.*")]))
         
     def validate_entry(self):
         """Checks if textboxs are not empty"""
@@ -278,7 +278,7 @@ class GUI(Tk):
             file_path = tkFileDialog.askopenfilename(
                 initialdir = self.default_directory,
                 title = "Selecciona el mensaje " + str(message + 1),
-                filetypes = [("Text files", "*.txt")])
+                filetypes = [("Archivos de texto", "*.txt")])
 
             message_paths.append(file_path)
 
