@@ -49,6 +49,10 @@ import time
 # Import json, for config.json
 import json
 
+# Imports to find the installed webdrivers
+import subprocess
+from subprocess import CalledProcessError
+
 # TODO: How to do i18n with Python??
 # TODO: Does Tk support Unicode??
 
@@ -81,7 +85,7 @@ class GUI(Tk):
 
         # Find webdrivers that are installed, to fill combobox
         self.fill_combobox(self.combo_webdriver,
-                           self.get_installed_webdrivers())
+                           get_installed_webdrivers())
         
         # Set default values
         self.set_default_values()
@@ -208,15 +212,7 @@ class GUI(Tk):
         """Fills the combobox CBO, with VALUES"""
         
         cbo["values"] = values
-        
-    def get_installed_webdrivers(self):
-        """Finds the installed webdrivers on the machine"""
-
-        # TODO: Hard code it for now.
-        webdrivers = ["Firefox", "Chrome"]
-
-        return webdrivers
-    
+            
     def set_default_values(self):
         """Sets default values of fields"""
 
@@ -540,6 +536,33 @@ def get_thisfile_directory():
     
     return (os.path.dirname(os.path.realpath(__file__)) + os.sep)
 
+def is_webdriver_installed(webdriver):
+    """Finds if WEBDRIVER is installed, by calling the semi-standard
+    `WEBDRIVER -V'"""
+
+    # If `WEBDRIVER -V' cannot be executed, then we assume it is not installed.
+    # (Selenium wouldn't find it anyway).
+    # When the call fails, a CalledProcessError exception is raised.
+    try:
+        subprocess.check_output(webdriver + " -V", stderr = subprocess.STDOUT,
+                                shell = True)
+    except CalledProcessError:
+        return False
+    else:
+        return True
+        
+def get_installed_webdrivers():
+    """Returns the installed webdrivers on the machine"""
+    
+    webbrowsers = ["Firefox", "Chrome"]
+    webdrivers = ["geckodriver", "chromedriver"]
+    
+    for webdriver in webdrivers:
+        if not is_webdriver_installed(webdriver):
+            del webbrowsers[webdrivers.index(webdriver)]
+
+    return webbrowsers
+        
 def read_textfile(filepath):
     """Reads an entire textfile, with 'latin-1' support"""
     
@@ -596,4 +619,3 @@ def dump_failed_email(failed_email, folder):
         f.close()
     except IOError:
         None
-    
