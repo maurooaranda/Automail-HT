@@ -259,6 +259,8 @@ class GUI(Tk):
             title = "Selecciona la planilla",
             filetypes = [("Hojas de datos", "*.xls* *.ods"),
                          ("All files", "*.*")]))
+        # Show last part of the file selected
+        self.txt_spreadsheet_path.xview_moveto(1)
         
     def validate_entry(self):
         """Checks if textboxs are not empty"""
