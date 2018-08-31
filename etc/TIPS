@@ -1,4 +1,4 @@
-Copyright (C) 2018. Mauro Aranda.
+Copyright (C) 2018. Mauro Aranda.                               -*-outline-*-
 
 Este archivo contiene tips para usar Automail-HT.
 Tiene el objetivo de ser una versión primitiva de un pequeño manual que
@@ -27,16 +27,20 @@ La interfaz gráfica (GUI) del automatizador es muy sencilla.  Contamos con
 3 campos de texto: 2 editables (Usuario y contraseña, tal como en HT) y uno
 no editable (Planilla), donde se muestra la dirección de la planilla que se
 utilizará.
+
 Además, contamos con una lista desplegable para elegir que navegador se
 automatizará, y la opción (en la versión 4.0 deshabilitada) de hacer uso de
 una extensión web que facilita el mailing.
-Para comenzar la automatización, es necesario llenar los 2 campos editables,
-así como proveer de la planilla a utilizar y hacer click en el botón
-"Enviar HTMails".  Si se deja algún campo sin llenar, el programa señalará un
-error.
+
+Para comenzar la automatización, es necesario llenar los 2 campos editables
+(o seleccionar la opción de "Poner información de logueo en HT"), así como
+proveer de la planilla a utilizar y hacer click en el botón "Enviar HTMails".
+Si se deja algún campo necesario sin llenar, el programa señalará un error.
+
 Luego de esto, según el contenido de la columna "Mensajes" de la planilla,
 el programa pide que se le provean la cantidad de plantillas de mensajes
 necesarias.  Hacerlo incorrectamente, hará al programa señalar un error.
+
 Una vez hecho esto, la interacción con el programa ha finalizado.  El navegador
 elegido se ejecutará, mandando los HT-Mails que se le instruyó mandar.
 Una vez terminado el uso, hacer click en el botón "Salir" termina la ejecución

@@ -342,13 +342,13 @@ class GUI(Tk):
                 self.driver = automation.ht_driver(self.combo_webdriver.get())
                 self.driver.visit_mainpage()
 
-                if self.no_login_info:
+                if self.no_login_info.get() == 1:
                     login_values = None
                 else:
                     login_values = [self.user.get(), self.password.get()]
             
                 if self.driver.login(login_values):
-                    # i holds the template message being used.
+                    # `i' holds the template message being used.
                     # Once all those mails are sent, increment it to use
                     # the next template.
                     i = 1
@@ -364,8 +364,8 @@ class GUI(Tk):
                     # For each row, customize the mail and send it.
                     for field in data:
                         # Change to the next template when needed.
-                        if (field[self.htmails_file.preferences["Headers"].index("Mensaje")] == (i + 1)):
-                            i += 1
+                        if (field[self.htmails_file.preferences["Headers"].index("Mensaje")] != i):
+                            i = field[self.htmails_file.preferences["Headers"].index("Mensaje")]
                             mail_template = read_textfile(message_paths[i - 1])
 
                         mail = self.customize_mail(mail_template,
