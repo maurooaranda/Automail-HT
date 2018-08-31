@@ -16,6 +16,11 @@ Actualmente, solo se soporta el uso de Firefox (junto con geckodriver) y de
 Chrome (via chromedriver).
 El agregado de nuevos navegadores se considerará en futuras versiones.
 
+* Automail-HT se confunde si en la columna Mensaje hay números faltantes
+Si se saltean números en la columna Mensaje, entonces Automail-HT se confunde
+y no selecciona correctamente el mensaje predeterminado.  Por lo tanto, hasta
+solucionar este mal comportamiento, se aconseja que no haya números faltantes.
+
 ^L
 This file is part of Automail-HT
 
