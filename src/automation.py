@@ -108,22 +108,29 @@ class ht_driver():
 
         # TODO: Save in variables the ids, class names, etc,
         # to easy fix if HT changes them
-        
-        # fill User input
-        elem_user = self.driver.find_element_by_id("ctl00_CPContent_ucLogin_txtUserName")
-        elem_user.send_keys(values[0])
 
-        # fill Password input
-        elem_password = self.driver.find_element_by_id("ctl00_CPContent_ucLogin_txtPassword")
-        elem_password.send_keys(values[1])
+        # If no_login_info is used, increase it, so the user has time to type
+        # his information on the web page.
+        wait_time = 10
+        if values:
+            # fill User input
+            elem_user = self.driver.find_element_by_id("ctl00_CPContent_ucLogin_txtUserName")
+            elem_user.send_keys(values[0])
+            
+            # fill Password input
+            elem_password = self.driver.find_element_by_id("ctl00_CPContent_ucLogin_txtPassword")
+            elem_password.send_keys(values[1])
 
-        # click button Login
-        self.driver.find_element_by_id("ctl00_CPContent_ucLogin_butLogin").click()
-
+            # click button Login
+            self.driver.find_element_by_id("ctl00_CPContent_ucLogin_butLogin").click()
+        else:
+            # 25 seconds should be enough time
+            wait_time = 25
+            
         # check if login was succesful
         # check for button Logout...that should be enough
         try:
-            wait = WebDriverWait(self.driver, 10)
+            wait = WebDriverWait(self.driver, wait_time)
             elmt = wait.until(EC.presence_of_element_located((By.ID,
                                                               "ctl00_ctl00_CPHeader_ucMenu_hypLogout")))
         except NoSuchElementException:
