@@ -21,7 +21,7 @@ comprimidos con todos los archivos necesarios para la ejecución.
 * A través de una distribución de un binario en un archivo comprimido
 En los releases, también se añadirá un archivo comprimido que contiene un
 ejecutable (binario), apto para ser ejecutado en las siguientes plataformas:
-Windows 32-bits.
+Windows 32-bits y GNU/Linux 32-bits.
 Puedes descargarlo y ejecutarlo, tal como harías con cualquier otro programa.
 Puedes poner un acceso directo para que te sea más sencillo acceder a él, si
 lo consideras conveniente.
