@@ -505,19 +505,22 @@ class GUI(Tk):
     def change_default_user(self):
         """ Change default user"""
         
-        new_value = tkSimpleDialog.askstring("Usuario", "")
+        new_value = tkSimpleDialog.askstring("Usuario", "",
+                                             initialvalue = self.user.get())
         self.change_config_file("Usuario", new_value)
 
     def change_default_directory(self):
         """Change default destination of folder for the dialogs"""
         
-        new_value = tkSimpleDialog.askstring("Directorio", "")
+        new_value = tkSimpleDialog.askstring("Directorio", "",
+                                             initialvalue = self.default_directory)
         self.change_config_file("Directorio Default", new_value)
 
     def change_default_webdriver(self):
         """Change the default webdriver for automation"""
 
-        new_value = tkSimpleDialog.askstring("Navegador", "")
+        new_value = tkSimpleDialog.askstring("Navegador", "",
+                                             initialvalue = self.combo_webdriver.get())
         self.change_config_file("Navegador Default", new_value)
     
     def change_config_file(self, field, value):
