@@ -123,9 +123,8 @@ class GUI(Tk):
         menubar.add_cascade(label = "Archivo", menu = filemenu)
 
         editmenu = Menu(menubar, tearoff = 0)
-        editmenu.add_command(label = "Usuario", command = self.change_user)
         editmenu.add_command(label = "Valores por defecto",
-                             command = self.change_default_fields)
+                             command = self.change_config_file)
         menubar.add_cascade(label = "Editar", menu = editmenu)
 
         helpmenu = Menu(menubar, tearoff = 0)
@@ -484,59 +483,13 @@ class GUI(Tk):
         """Set button to RAISED"""
         
         event.widget.config(relief = RAISED)
-
-    def change_user(self):
-        new_value = tkSimpleDialog.askstring("Usuario", "")
-
-        if new_value:
-            self.user.set(new_value)
         
-    def change_default_fields(self):
-        """Change User default values"""
-
-        try:
-            self.change_default_user()
-            self.change_default_directory()
-            self.change_default_webdriver()
-        except IOError:
-            # If config.json cannot be opened, then catch the error here.
-            showerror("Error", "No pudo abrirse el archivo 'config.json'")
-
-    def change_default_user(self):
-        """ Change default user"""
-        
-        new_value = tkSimpleDialog.askstring("Usuario", "",
-                                             initialvalue = self.user.get())
-        self.change_config_file("Usuario", new_value)
-
-    def change_default_directory(self):
-        """Change default destination of folder for the dialogs"""
-        
-        new_value = tkSimpleDialog.askstring("Directorio", "",
-                                             initialvalue = self.default_directory)
-        self.change_config_file("Directorio Default", new_value)
-
-    def change_default_webdriver(self):
-        """Change the default webdriver for automation"""
-
-        new_value = tkSimpleDialog.askstring("Navegador", "",
-                                             initialvalue = self.combo_webdriver.get())
-        self.change_config_file("Navegador Default", new_value)
-    
-    def change_config_file(self, field, value):
+    def change_config_file(self):
         """Modifies config file"""
-        
-        config_file = open(get_thisfile_directory() + os.pardir + os.sep + \
-                           "config.json")
-        default_values = json.load(config_file)
-        config_file.close()
-        
-        default_values[field] = value
 
-        config_file = open(get_thisfile_directory() + os.pardir + os.sep + \
-                          "config.json", 'w')
-        json.dump(default_values, config_file)
-        config_file.close()
+        d = Dialog_config(self.frame,
+                          get_thisfile_directory() + os.pardir + os.sep + \
+                          "config.json")
     
     def show_manual(self):
         manual_frame = Toplevel()
@@ -569,6 +522,94 @@ Copyright (C) 2018 Mauro Aranda.""")
 
     def destroy(self):
         self.quit()
+
+
+# Class Dialog_config: Implements a Dialog window, to perform changes
+# in `config.json' file.
+
+class Dialog_config(tkSimpleDialog.Dialog):
+    """Dialog to perform changes in config file, which contain
+    user default settings"""
+
+    def __init__(self, parent, config_file_path):
+        """Initialize the Dialog, calling the parent constructor.
+        Save the path to the config_file for reading and writing."""
+
+        self.config_file_path = config_file_path
+        tkSimpleDialog.Dialog.__init__(self, parent,
+                                       title = "Valores por defecto")
+        
+    def body(self, master):
+        """Creates widgets for every field, and sets focus to user entry"""
+        
+        try:
+            config_file = open(self.config_file_path)
+            self.default_values = json.load(config_file)
+            config_file.close()
+        except IOError:
+            showerror("Error", "No se encuentra el archivo config.json")
+            tkSimpleDialog.Dialog.cancel()
+        else:
+            Label(master, text = "Usuario:").grid(row = 0, column = 0,
+                                                  sticky = W)
+            Label(master, text = "Directorio Default:").grid(row = 1,
+                                                             column = 0,
+                                                             sticky = W)
+            Label(master, text = "Navegador Default:").grid(row = 2,
+                                                            column = 0,
+                                                            sticky = W)
+            self.txt_user = Entry(master)
+            self.txt_user.grid(row = 0, column = 1)
+            self.txt_user.insert(0, self.default_values["Usuario"])
+            self.txt_directory = Entry(master)
+            self.txt_directory.grid(row = 1, column = 1)
+            self.txt_directory.insert(0,
+                                      self.default_values["Directorio Default"])
+            self.txt_browser = Entry(master)
+            self.txt_browser.grid(row = 2, column = 1)
+            self.txt_browser.insert(0, self.default_values["Navegador Default"])
+
+            # Return self.txt_user, so it gets initial focus.
+            return self.txt_user
+
+    def validate(self):
+        """Validates default fields input"""
+
+        # Check for a supported driver, and for a directory that exists.
+        try:
+            installed_webdrivers = get_installed_webdrivers()
+            installed_webdrivers.index(self.txt_browser.get())
+        except ValueError:
+            
+            showwarning("Navegador incorrecto",
+                        "No se pudo encontrar el driver del navegador seleccionado.\nNavegadores instalados: " + str(installed_webdrivers))
+            return 0
+        else:
+            input_path = self.txt_directory.get()
+            
+            if input_path == "~" or input_path == "src":
+                return 1
+            else:
+                if os.path.isdir(input_path):
+                    return 1
+                else:
+                    showwarning("Directorio incorrecto", "El directorio especificado no existe")
+                    return 0
+            
+    def apply(self):
+        """Apply changes to default values"""
+
+        try:
+            config_file = open(self.config_file_path, 'w')
+        except IOError:
+            showerror("Error", "No se pudo abrir config.json para escribir los valores por defecto")
+            tkSimpleDialog.Dialog.cancel()
+        else:
+            self.default_values["Usuario"] = self.txt_user.get()
+            self.default_values["Navegador Default"] = self.txt_browser.get()
+            self.default_values["Directorio Default"] = self.txt_directory.get()
+            json.dump(self.default_values, config_file)
+            config_file.close()
 
 # TODO: Find a place where to put this functions.        
 def get_thisfile_directory():
