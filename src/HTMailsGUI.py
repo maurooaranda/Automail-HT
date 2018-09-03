@@ -275,9 +275,6 @@ class GUI(Tk):
                 return (self.user.get() != "" and self.password.get() != "")
         else:
             return False
-        # return (self.user.get() != "" and \
-        #         self.password.get() != "" and \
-        #         self.spreadsheet_path.get() != "")
 
     def get_message_paths(self):
         """Prompts the user for the paths to the messages templates to be 
