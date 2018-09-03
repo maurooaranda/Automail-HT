@@ -21,6 +21,12 @@ Si se saltean números en la columna Mensaje, entonces Automail-HT se confunde
 y no selecciona correctamente el mensaje predeterminado.  Por lo tanto, hasta
 solucionar este mal comportamiento, se aconseja que no haya números faltantes.
 
+* Errno 10053 en windows, usando geckodriver 0.21.0 , Firefox y Selenium 3.13.0
+Al esperar entre mail y mail, si se esperan más de 5 segundos, entonces
+el sistema operativo windows anula la conexión.  Dado que hay una nueva
+versión de Selenium (3.14.0), simplemente con upgradear el módulo Selenium
+es suficiente.
+
 ^L
 This file is part of Automail-HT
 
