@@ -86,8 +86,9 @@ la opción de también guardar la contraseña.
 
 ** Navegador Default
 Esta opción permite elegir por defecto el navegador que se automatizará.
+En estos momentos, están soportados Firefox y Chrome.
 Si el navegador especificado no es soportado, entonces se recurrirá a setear
-el valor de "Firefox".  Contactame, si preferirías que sea otro.
+el valor de "Firefox".
 
 ** Directorio Default
 Para saber a qué usuarios se enviarán los mails, el automatizador usa planillas
@@ -95,6 +96,11 @@ de cálculo (archivos de Excel u *.ods --al menos eso creo).  Para ello, el
 usuario debe especificar cuál es el archivo.  Esta opción permite acceder más
 rápido al archivo, ya que se comienza el diálogo de selección de archivo en el
 directorio por defecto.
+Además de todos los directorios posibles que existan en tu sistema, puedes
+indicar dos valores especiales: "~" que significa HOME, o "src".  "src"
+resulta ser el directorio desde donde se ejecuta el programa.  Si tienes otro
+directorio cuyo nombre resulta ser "src", entonces pon en PATH entero en la
+opción.
 
 ^L
 This file is part of Automail-HT
