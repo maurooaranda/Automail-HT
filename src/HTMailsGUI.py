@@ -605,7 +605,8 @@ class Dialog_config(tkSimpleDialog.Dialog):
             self.default_values["Usuario"] = self.txt_user.get()
             self.default_values["Navegador Default"] = self.txt_browser.get()
             self.default_values["Directorio Default"] = self.txt_directory.get()
-            json.dump(self.default_values, config_file)
+            json.dump(self.default_values, config_file, indent = 4,
+                      separators = (",", ": "))
             config_file.close()
 
 # TODO: Find a place where to put this functions.        

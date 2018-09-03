@@ -37,7 +37,8 @@ try:
                           "Navegador Default": "Firefox"}
         config_file = open(HTMailsGUI.get_thisfile_directory() + \
                            os.pardir + os.sep + 'config.json', 'w')
-        json.dump(default_values, config_file)
+        json.dump(default_values, config_file, indent = 4,
+                  separators = (",", ": "))
         config_file.close()
 except IOError:
     print "El programa se inicializara, pero no se pudo cargar el archivo",
