@@ -3,8 +3,6 @@
 
 # Copyright (C) 2018. Mauro Aranda
 
-# This file is part of Automatizador de HT-Mails.
-
 # This file is part of Automail-HT.
 
 # Automail-HT free software: you can redistribute it and/or modify
@@ -69,7 +67,7 @@ class GUI(Tk):
         self.geometry("650x275")
 
         # TODO: Add icon
-        # self.add-icon()
+        # self.add_icon()
         
         self.frame.grid(sticky = W+E+N+S)
 
@@ -79,7 +77,7 @@ class GUI(Tk):
         # Create widgets
         self.create_widgets()
         
-        # configure grid
+        # Configure grid
         self.rowconfigure(4, weight = 1)
         self.columnconfigure(3, weight = 1)
 
@@ -182,7 +180,7 @@ class GUI(Tk):
             Checkbutton(self, text = "Usar extension de HTMails",
                         variable = self.use_htmails_extension)
 
-        # Automation-HT won't ask for login info
+        # Automail-HT won't ask for login info
         self.no_login_info = IntVar()
         self.chk_no_login_info = \
             Checkbutton(self, text = "Poner información de logueo en HT",
@@ -229,7 +227,7 @@ class GUI(Tk):
             config_file.close()
         except IOError:
             # In case of failing to read config_file, do this to avoid
-            # excepcion when calling askopenfilename.  See Issue #1
+            # exception when calling askopenfilename.  See Issue #1
             self.user.set("")
             self.combo_webdriver.set(self.combo_webdriver["values"][0])
             self.default_directory = os.path.expanduser("~")
@@ -577,7 +575,6 @@ class Dialog_config(tkSimpleDialog.Dialog):
             installed_webdrivers = get_installed_webdrivers()
             installed_webdrivers.index(self.txt_browser.get())
         except ValueError:
-            
             showwarning("Navegador incorrecto",
                         "No se pudo encontrar el driver del navegador seleccionado.\nNavegadores instalados: " + str(installed_webdrivers))
             return 0
@@ -616,7 +613,7 @@ def get_thisfile_directory():
     return (os.path.dirname(os.path.realpath(__file__)) + os.sep)
 
 def is_webdriver_installed(webdriver):
-    """Finds if WEBDRIVER is installed, by calling the semi-standard
+    """Finds if WEBDRIVER is installed, by executing the semi-standard
     `WEBDRIVER -V'"""
 
     # If `WEBDRIVER -V' cannot be executed, then we assume it is not installed.
