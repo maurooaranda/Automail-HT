@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2018. Mauro Aranda
+# Copyright (C) 2018-2019. Mauro Aranda
 
 # This file is part of Automail-HT.
 
-# Automail-HT free software: you can redistribute it and/or modify
+# Automail-HT is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
