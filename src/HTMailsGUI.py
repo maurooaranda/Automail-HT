@@ -502,14 +502,14 @@ class GUI(Tk):
 Version: 4.0
 mail: maurooaranda@gmail.com
 
-Copyright (C) 2018 Mauro Aranda.""")
+Copyright (C) 2019 Mauro Aranda.""")
         msg.pack()
 
     def show_license(self):
         license_frame = Toplevel()
         license_frame.title("Licencia")
 
-        msg = Label(license_frame, text = """Copyright (C) 2018 Mauro Aranda.
+        msg = Label(license_frame, text = """Copyright (C) 2019 Mauro Aranda.
         Automail-HT comes with ABSOLUTELY NO WARRANTY.
         You may redistribute copies of Automail-HT
         under the terms of the GNU General Public License.""")
