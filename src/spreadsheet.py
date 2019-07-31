@@ -23,7 +23,7 @@
 import openpyxl
 
 def get_headers (workbook, sheet):
-    """Get headers of a SHEET.  Assumes that when a blank cell is found,
+    """Get headers of a sheet SHEET.  Assumes that when a blank cell is found,
     there are no more headers."""
     
     ws = workbook[sheet]
@@ -40,20 +40,20 @@ def get_headers (workbook, sheet):
         
     return headers
 
-def get_values_until_blankcell(workbook, sheet, col, row_start):
-    """Get all values from a SHEET, for a column COL, starting at ROW_START"""
+def get_values_until_blankcell (workbook, sheet, col, row_start):
+    """Get all values from a SHEET, for a column COL, starting at ROW_START."""
     ws = workbook[sheet]
 
     r = row_start
 
     data = []
 
-    next_data = ws.cell(row = r, column = col).value
+    next_data = ws.cell (row = r, column = col).value
 
     while (next_data != None):
-        data.append(next_data)
+        data.append (next_data)
         r += 1
-        next_data = ws.cell(row = r, column = col).value
+        next_data = ws.cell (row = r, column = col).value
 
     return data
     

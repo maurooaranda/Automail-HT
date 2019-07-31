@@ -78,7 +78,7 @@ class GUI (Tk):
 
         # Find webdrivers that are installed, to fill combobox.
         self.fill_combobox (self.combo_webdriver,
-                           get_installed_webdrivers ())
+                            get_installed_webdrivers ())
         
         # Set default values.
         self.set_default_values ()
@@ -348,8 +348,8 @@ class GUI (Tk):
                     # Read the mail_template.
                     mail_template = read_textfile (message_paths[i - 1])
 
-                    # Fallidos.txt will be created (or overwrited) the first
-                    # time one mail fails.  Then, all failed mails in the
+                    # The file fallidos.txt will be created (or overwritten)
+                    # the first one mail fails.  Then, all failed mails in the
                     # current run will be appended.
                     created_failed_file = False
 
@@ -370,9 +370,20 @@ class GUI (Tk):
                         # Try to send the mail, and if it was not sent
                         # (a.k.a, driver.sendHTMail returns False), append data
                         # to fallidos.txt
+
+                        # HACK ALERT: This is a quick hack to get it working
+                        # fast.
+                        # dir_access will be True if Owner ID is given.
+                        try:
+                            self.htmails_file.preferences["Headers"].index ("ID Manager")
+                        except ValueError:
+                            dir_access = False
+                        else:
+                            dir_access = True
+                            
                         if not (self.driver.sendHTMail (subject, content, field,
-                                                        self.htmails_file.preferences["Headers"].index ("ID Jugador"),
-                                                        self.htmails_file.preferences["BlackList"], False)):
+                                                        0,
+                                                        self.htmails_file.preferences["BlackList"], dir_access)):
                             if (not created_failed_file):
                                 create_failed_file (get_thisfile_directory () + \
                                                     os.pardir)

@@ -55,21 +55,21 @@ class htmails_ss:
         return keywords
     
     def get_seconds_wait (self):
-        """Get the seconds to wait, and defaults to 10."""
+        """Get the seconds to wait, and default to 10."""
         
-        ws = self.wb["HT-Mails"]
+        ws = self.wb["Instrucciones"]
 
         try:
-            return int (ws["K2"].value)
+            return int (ws["J2"].value)
         except ValueError:
             return 10
 
     def get_total_messages (self):
-        """Gets how many mail templates are needed."""
+        """Get how many mail templates are needed."""
         
         messages_number = \
             spreadsheet.get_values_until_blankcell (self.wb, "HT-Mails",
-                                                    self.preferences["Headers"].index("Mensaje") + 1,
+                                                    self.preferences["Headers"].index ("Mensaje") + 1,
                                                     2)
         return max (messages_number)
 

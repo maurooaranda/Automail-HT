@@ -27,13 +27,13 @@ import json
 
 # Check if config.json file exists.  If not, create it with hard-coded values.
 try:
-    if not (os.path.isfile (HTMailsGUI.get_thisfile_directory() + \
+    if not (os.path.isfile (HTMailsGUI.get_thisfile_directory () + \
                             os.pardir + os.sep + "config.json")):
         
         default_values = {"Usuario": "",
                           "Directorio Default": "src",
                           "Navegador Default": "Firefox"}
-        config_file = open (HTMailsGUI.get_thisfile_directory() + \
+        config_file = open (HTMailsGUI.get_thisfile_directory () + \
                             os.pardir + os.sep + 'config.json', 'w')
         json.dump (default_values, config_file, indent = 4,
                    separators = (",", ": "))

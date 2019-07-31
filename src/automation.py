@@ -83,6 +83,7 @@ class ht_driver ():
         self.mainpage = "https://hattrick.org/"
         self.server = ""
         self.youthplayer_url = "https://www{0}.hattrick.org/Club/Players/YouthPlayer.aspx?YouthPlayerID={1}"
+        self.htmail_url = "https://www{0}.hattrick.org/MyHattrick/Inbox/?actionType=newMail&userId={1}"
         
     def visit_mainpage (self):
         """Get mainpage."""
@@ -124,11 +125,11 @@ class ht_driver ():
             # Click button Login.
             self.driver.find_element_by_id ("ctl00_CPContent_ucLogin_butLogin").click()
         else:
-            # 25 seconds should be enough time
+            # 25 seconds should be enough time.
             wait_time = 25
             
-        # check if login was succesful
-        # check for button Logout...that should be enough
+        # Check if login was succesful.
+        # Check for button Logout, that should be enough.
         try:
             wait = WebDriverWait (self.driver, wait_time)
             elmt = wait.until (EC.presence_of_element_located ((By.ID,
@@ -150,7 +151,31 @@ class ht_driver ():
         # is present.
         # TODO: Add code to handle the web extension.
         if direct_access:
-            return False
+            # HACK ALERT: Make it work now!
+            self.visit_url (self.htmail_url,
+                            [self.server,
+                             self.extract_player_id (data[where_to_look])])
+            try:
+                wait = WebDriverWait (self.driver, 10)
+                elmt = \
+                    wait.until (EC.presence_of_element_located ((By.ID,
+                                                                "ctl00_ctl00_CPContent_CPMain_tbSubject")))
+            except TimeoutException:
+                return False
+            else:
+                elmt.send_keys (subject)
+                self.driver.find_element_by_id ("ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody").send_keys (content)
+                self.driver.find_element_by_id ("ctl00_ctl00_CPContent_CPMain_btnSendNew").click ()
+                try:
+                    elmt = \
+                        wait.until (EC.presence_of_element_located ((By.ID,
+                                                                     "ctl00_ctl00_CPContent_ucNotifications_ok_0")))
+                    # If that elmt did not appear, then the mail was not sent.
+                except TimeoutException:
+                    return False
+                else:
+                    return True
+                
         else:
             self.visit_url (self.youthplayer_url,
                             [self.server,
@@ -174,7 +199,7 @@ class ht_driver ():
                         elmt = \
                             wait.until (EC.presence_of_element_located ((By.ID,
                                                                          "ctl00_ctl00_CPContent_ucNotifications_ok_0")))
-                    # If that elmt did not appear, then the mail was not sent
+                    # If that elmt did not appear, then the mail was not sent.
                     except TimeoutException:
                         return False
                     else:
