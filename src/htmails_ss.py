@@ -1,3 +1,4 @@
+# htmails_ss.py: Defines the format and operations of a HT-Mails spreadsheet
 # -*- coding: utf-8 -*-
 
 # Copyright (C) 2018-2019. Mauro Aranda
@@ -18,77 +19,75 @@
 # along with Automail-HT.  If not, see <https://www.gnu.org/licenses/>.
 
 
-# htmails_ss.py: Defines the format and operations of a HT-Mails spreadsheet
-
-# Imports for handling spreadsheets
+# Imports for handling spreadsheets.
 from openpyxl import load_workbook
 import spreadsheet
 
 class htmails_ss:    
-    def __init__(self, ss_path):
+    def __init__ (self, ss_path):
         try:
             # TODO: Reject spreadsheet if it doesn't adjust to protocol!!
-            self.wb = load_workbook(filename = ss_path, read_only = True)
+            self.wb = load_workbook (filename = ss_path, read_only = True)
         except:
             print "No pudo abrirse el archivo indicado"
         else:
             self.preferences = {}
-            self.preferences["Seconds_wait"] = self.get_seconds_wait()
-            self.preferences["Keywords"] = self.get_mail_keywords()
-            self.preferences["Headers"] = spreadsheet.get_headers(self.wb,
-                                                                  "HT-Mails")
-            self.preferences["BlackList"] = self.get_blacklist()
+            self.preferences["Seconds_wait"] = self.get_seconds_wait ()
+            self.preferences["Keywords"] = self.get_mail_keywords ()
+            self.preferences["Headers"] = spreadsheet.get_headers (self.wb,
+                                                                   "HT-Mails")
+            self.preferences["BlackList"] = self.get_blacklist ()
 
-    def get_mail_keywords(self):
-        """Gets the keywords that are supported"""
+    def get_mail_keywords (self):
+        """Get the keywords that are supported."""
         
         ws = self.wb["Instrucciones"]
         r = 2
         
         keywords = []
 
-        next_keyword = ws.cell(row = r, column = 2).value
+        next_keyword = ws.cell (row = r, column = 2).value
         while (next_keyword != None):
-            keywords.append(next_keyword)
+            keywords.append (next_keyword)
             r += 1
-            next_keyword = ws.cell(row = r, column = 2).value
+            next_keyword = ws.cell (row = r, column = 2).value
 
         return keywords
     
-    def get_seconds_wait(self):
-        """Gets the seconds to wait, and defaults to 10"""
+    def get_seconds_wait (self):
+        """Get the seconds to wait, and defaults to 10."""
         
         ws = self.wb["HT-Mails"]
 
         try:
-            return int(ws["K2"].value)
+            return int (ws["K2"].value)
         except ValueError:
             return 10
 
-    def get_total_messages(self):
-        """Gets how many mail templates are needed"""
+    def get_total_messages (self):
+        """Gets how many mail templates are needed."""
         
         messages_number = \
-            spreadsheet.get_values_until_blankcell(self.wb, "HT-Mails",
-                                                   self.preferences["Headers"].index("Mensaje") + 1,
-                                                   2)
-        return max(messages_number)
+            spreadsheet.get_values_until_blankcell (self.wb, "HT-Mails",
+                                                    self.preferences["Headers"].index("Mensaje") + 1,
+                                                    2)
+        return max (messages_number)
 
-    def get_thread_id(self):
-        """Find the thread id if given, or return 'None'"""
+    def get_thread_id (self):
+        """Find the thread id if given, or return 'None'."""
         
         ws = self.wb["Instrucciones"]
         
-        return str(ws["J3"].value)
+        return str (ws["J3"].value)
 
-    def get_fields(self):
-        """Gets the fields in HT-Mails.  These contain the data that is needed
-        to send the HT-Mail"""
+    def get_fields (self):
+        """Get the fields in HT-Mails.  These contain the data that is needed
+        to send the HT-Mail."""
         
-        return spreadsheet.get_values_until_blankrow(self.wb, "HT-Mails",
-                                                     len(self.preferences["Headers"]), 2)
+        return spreadsheet.get_values_until_blankrow (self.wb, "HT-Mails",
+                                                      len (self.preferences["Headers"]), 2)
 
-    def get_blacklist(self):
-        """Gets users in blacklist"""
+    def get_blacklist (self):
+        """Get users in blacklist."""
         
-        return spreadsheet.get_values_until_blankcell(self.wb, "Equipos Omitidos", 1, 2)
+        return spreadsheet.get_values_until_blankcell (self.wb, "Equipos Omitidos", 1, 2)

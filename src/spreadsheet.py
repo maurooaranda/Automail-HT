@@ -1,3 +1,4 @@
+# spreadsheet.py: Handles operations of spreadsheets, using openpyxl
 # -*- coding: utf-8 -*-
 
 # Copyright (C) 2018-2019. Mauro Aranda
@@ -18,13 +19,11 @@
 # along with Automail-HT.  If not, see <https://www.gnu.org/licenses/>.
 
 
-# spreadsheet.py: Handles operations of spreadsheets, using openpyxl
-
 # Imports for handling *.xls
 import openpyxl
 
-def get_headers(workbook, sheet):
-    """Gets headers of a SHEET.  Assumes that when a blank cell is found,
+def get_headers (workbook, sheet):
+    """Get headers of a SHEET.  Assumes that when a blank cell is found,
     there are no more headers."""
     
     ws = workbook[sheet]
@@ -33,11 +32,11 @@ def get_headers(workbook, sheet):
 
     headers = []
 
-    next_header = ws.cell(row = 1, column = col).value
+    next_header = ws.cell (row = 1, column = col).value
     while (next_header != None):
-        headers.append(next_header)
+        headers.append (next_header)
         col += 1
-        next_header = ws.cell(row = 1, column = col).value
+        next_header = ws.cell (row = 1, column = col).value
         
     return headers
 
@@ -58,8 +57,8 @@ def get_values_until_blankcell(workbook, sheet, col, row_start):
 
     return data
     
-def get_values_until_blankrow(workbook, sheet, cols, row_start):
-    """Get all values in rows, until a row is blank"""
+def get_values_until_blankrow (workbook, sheet, cols, row_start):
+    """Get all values in rows, until a row is blank."""
     
     ws = workbook[sheet]
 
@@ -70,17 +69,17 @@ def get_values_until_blankrow(workbook, sheet, cols, row_start):
     field = []
     i = 0
 
-    data.append([])
-    for col in range(cols):
-        data[i].append(ws.cell(row = r, column = col + 1).value)
+    data.append ([])
+    for col in range (cols):
+        data[i].append (ws.cell (row = r, column = col + 1).value)
 
-    while (not(all(v is None for v in data[i]))):
-        data[i] = tuple(data[i])
+    while (not (all (v is None for v in data[i]))):
+        data[i] = tuple (data[i])
         i += 1
         r += 1
-        data.append([])
-        for col in range(cols):
-            data[i].append(ws.cell(row = r, column = col + 1).value)
+        data.append ([])
+        for col in range (cols):
+            data[i].append (ws.cell (row = r, column = col + 1).value)
 
     # A None tuple was added, so delete it.
     del data[-1]
