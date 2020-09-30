@@ -2,7 +2,7 @@
 # createFirefoxProfile.py: Creates a Firefox Profile, for automation
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2018-2019. Mauro Aranda
+# Copyright (C) 2018-2020. Mauro Aranda
 
 # This file is part of Automail-HT.
 

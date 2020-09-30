@@ -1,7 +1,7 @@
 # automation.py: Handles automation of HT web page
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2018-2019. Mauro Aranda
+# Copyright (C) 2018-2020. Mauro Aranda
 
 # This file is part of Automail-HT.
 
@@ -52,27 +52,7 @@ class ht_driver ():
         # We'll need them if using the extension
 
         if driver == "Firefox":
-
-            # Comment it for now, to use when using web extension.
-            # try:
-            #     f = open(HTMailsGUI.get_thisfile_directory() + os.pardir + \
-                #              os.sep + "data" + os.sep + "pathToProfile.txt", "r")
-            #     profile_path = f.read()
-            #     f.close()
-            # except:
-            #     print "No pudo encontrarse el perfil necesario de Firefox"
-            #     print "Por favor, corra de nuevo el archivo create_firefox_profile.py"
-            #     sys.exit()
-            
-            # # Create Firefox Profile
-            # fp = webdriver.FirefoxProfile(profile_path)
-        
             options = Options ()            
-
-            # Initialize webdriver
-            # self.driver = webdriver.Firefox(firefox_profile = fp,
-            #                                 firefox_options = options)
-
             self.driver = webdriver.Firefox (firefox_options = options)
 
         # FIXME: Maybe more webdrivers will come.
@@ -146,10 +126,6 @@ class ht_driver ():
                     direct_access):
         """Send HTMails to users, depending on content of spreadsheet file.
         Give the index WHERE_TO_LOOK, to know where to look for an ID in DATA."""
-
-        # TODO: Go right to mail page if direct_access = true, and ID Owner
-        # is present.
-        # TODO: Add code to handle the web extension.
         if direct_access:
             # HACK ALERT: Make it work now!
             self.visit_url (self.htmail_url,
@@ -208,11 +184,11 @@ class ht_driver ():
                 return False
 
     def goto_mail_page (self, blacklist):
-        """Attemp to reach the HT-Mail url.  If the manager is in the
-        BLACKLIST, then return abort the attempt, returning False."""
+        """Attemp to reach the HT-Mail url.
+        If the manager is in the BLACKLIST, then return abort the attempt
+        and return False."""
 
-        # TODO: There's an easier way if Manager ID is provided,
-        # or with the web extension.
+        # TODO: There's an easier way if Manager ID is provided.
         
         # Check if the team is not in the blacklist.
         try:
@@ -255,7 +231,7 @@ class ht_driver ():
         return url[server_pos:url.find (".")]
 
     def extract_player_id (self, tag):
-        """Extracs an id from the tag: [YOUTH?playerid=ID]."""
+        """Extract an id from the tag: [YOUTH?playerid=ID]."""
         pos_equalsign = tag.find ("=")
         return tag[pos_equalsign + 1:-1]
         

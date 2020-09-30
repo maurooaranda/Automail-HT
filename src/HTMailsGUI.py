@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 # HTMailsGUI.py: This is the HTMails Automation GUI. -*- coding: utf-8 -*-
 
-# Copyright (C) 2018-2019. Mauro Aranda
+# Copyright (C) 2018-2020. Mauro Aranda
 
 # This file is part of Automail-HT.
 
@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Automail-HT.  If not, see <https://www.gnu.org/licenses/>.
 
-
+### Imports.
 # Imports for GUI.
 from Tkinter import *
 from tkMessageBox import *
@@ -42,18 +42,18 @@ import io
 # Import for waiting.
 import time
 
-# Import json, for config.json
+# Import json, for config.json.
 import json
 
-# Imports to find the installed webdrivers.
-import subprocess
-from subprocess import CalledProcessError
+# Webdrivers.
+import webdriver
 
+### Classes.
 class GUI (Tk):
     """HTMails Automation GUI."""
 
     def __init__ (self):
-        """Creates all GUI Widgets: MenuBar, Labels, TextBoxs, Buttons etc."""
+        """Create all GUI Widgets: MenuBar, Labels, TextBoxs, Buttons etc."""
   
         # Overhead code, to initialise Tkinter Frame.
         self.root = Tk.__init__ (self)
@@ -101,7 +101,8 @@ class GUI (Tk):
     #     self.tk.call('wm', 'iconphoto', self.master._w, icon)
     
     def create_menubar (self):
-        """Creates the MenuBar for the application. Menu is:
+        """Create the MenuBar for the application.
+        Menu is:
         # Archivo  -> Enviar Mails | Salir
         # Editar   -> Usuario ||
         #          -> Valores por Defecto
@@ -132,7 +133,7 @@ class GUI (Tk):
         self.config (menu = menubar)
 
     def create_widgets (self):
-        """Creates all the widgets for the GUI."""
+        """Create all the widgets for the GUI."""
         # Static labels:
         self.lbl_user = Label (self, text = "Usuario: ")
         self.lbl_password = Label (self, text = "Clave: ")
@@ -273,8 +274,8 @@ class GUI (Tk):
             return False
 
     def get_message_paths (self):
-        """Prompts the user for the paths to the messages templates to be 
-        used.  The total messages are retrieved from the spreadsheet."""
+        """Prompt the user for the paths to the messages templates to be used.
+        The total messages are retrieved from the spreadsheet."""
 
         message_paths = []
         total_messages = self.htmails_file.get_total_messages ()
@@ -301,7 +302,7 @@ class GUI (Tk):
         self.sendHTMails ()
 
     def sendHTMails (self):
-        """Starts the automation of sending HTMails."""
+        """Start the automation of sending HTMails."""
 
         # If all textboxs contain text, execute.
         if self.validate_entry ():
@@ -405,7 +406,7 @@ class GUI (Tk):
             showinfo ("Error", "Uno o mas campos estan vacios")
 
     def customize_mail (self, mail, reference, data):
-        """Replaces keywords on the template."""
+        """Replace keywords on the template."""
 
         # Add Apodo, only if it is given.
         try:
@@ -518,7 +519,7 @@ Copyright (C) 2019 Mauro Aranda.""")
         license_frame = Toplevel ()
         license_frame.title ("Licencia")
 
-        msg = Label (license_frame, text = """Copyright (C) 2019 Mauro Aranda.
+        msg = Label (license_frame, text = """Copyright (C) 2020 Mauro Aranda.
         Automail-HT comes with ABSOLUTELY NO WARRANTY.
         You may redistribute copies of Automail-HT
         under the terms of the GNU General Public License.""")
@@ -532,8 +533,7 @@ Copyright (C) 2019 Mauro Aranda.""")
 # in `config.json' file.
 
 class Dialog_config (tkSimpleDialog.Dialog):
-    """Dialog to perform changes in config file, which contain
-    user default settings."""
+    """Dialog to perform changes in config file."""
 
     def __init__ (self, parent, config_file_path):
         """Initialize the Dialog, calling the parent constructor.
@@ -544,7 +544,7 @@ class Dialog_config (tkSimpleDialog.Dialog):
                                         title = "Valores por defecto")
         
     def body (self, master):
-        """Creates widgets for every field, and sets focus to user entry."""
+        """Create widgets for every field, and set focus to user entry."""
         
         try:
             config_file = open (self.config_file_path)
@@ -577,7 +577,7 @@ class Dialog_config (tkSimpleDialog.Dialog):
             return self.txt_user
 
     def validate (self):
-        """Validates default fields input."""
+        """Validate default fields input."""
 
         # Check for a supported driver, and for a directory that exists.
         try:
@@ -615,39 +615,28 @@ class Dialog_config (tkSimpleDialog.Dialog):
                        separators = (",", ": "))
             config_file.close ()
 
+### Utils.
 # TODO: Find a place where to put this functions.        
 def get_thisfile_directory ():
     """Helper function for obtaining directory of the software."""
     
     return (os.path.dirname (os.path.realpath (__file__)) + os.sep)
 
-def is_webdriver_installed (webdriver):
-    """Finds if WEBDRIVER is installed, by executing the semi-standard
-    `WEBDRIVER -V'"""
-
-    # If `WEBDRIVER -V' cannot be executed, then we assume it is not installed.
-    # (Selenium wouldn't find it anyway).
-    # When the call fails, a CalledProcessError exception is raised.
-    try:
-        subprocess.check_output (webdriver + " -V", stderr = subprocess.STDOUT,
-                                 shell = True)
-    except CalledProcessError:
-        return False
-    else:
-        return True
-        
 def get_installed_webdrivers ():
     """Return the installed webdrivers on the machine."""
-    
-    webbrowsers = ["Firefox", "Chrome"]
-    webdrivers = ["geckodriver", "chromedriver"]
-    
-    for webdriver in webdrivers:
-        if not is_webdriver_installed (webdriver):
-            del webbrowsers[webdrivers.index (webdriver)]
 
-    return webbrowsers
-        
+    # chromedriver used to support -V too, but now they don't.  Oh well...
+    webdrivers = [webdriver.Webdriver ("geckodriver", "Firefox",
+                                       {"version": "-V"}),
+                  webdriver.Webdriver ("chromedriver", "Chrome",
+                                       {"version": "--version"})]
+    ret = []
+    for wd in webdrivers:
+        if wd.is_installed_p ():
+            ret.insert (len (ret), wd.webbrowser)
+            
+    return ret
+
 def read_textfile (filepath):
     """Read an entire textfile, with 'latin-1' support."""
     

@@ -1,7 +1,7 @@
 # spreadsheet.py: Handles operations of spreadsheets, using openpyxl
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2018-2019. Mauro Aranda
+# Copyright (C) 2018-2020. Mauro Aranda
 
 # This file is part of Automail-HT.
 
@@ -23,8 +23,8 @@
 import openpyxl
 
 def get_headers (workbook, sheet):
-    """Get headers of a sheet SHEET.  Assumes that when a blank cell is found,
-    there are no more headers."""
+    """Get headers of a sheet SHEET.
+    Assumes that when a blank cell is found, there are no more headers."""
     
     ws = workbook[sheet]
 

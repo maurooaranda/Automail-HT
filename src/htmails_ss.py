@@ -1,7 +1,7 @@
 # htmails_ss.py: Defines the format and operations of a HT-Mails spreadsheet
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2018-2019. Mauro Aranda
+# Copyright (C) 2018-2020. Mauro Aranda
 
 # This file is part of Automail-HT.
 
@@ -81,8 +81,8 @@ class htmails_ss:
         return str (ws["J3"].value)
 
     def get_fields (self):
-        """Get the fields in HT-Mails.  These contain the data that is needed
-        to send the HT-Mail."""
+        """Get the fields in HT-Mails.
+        These contain the data that is needed to send the HT-Mail."""
         
         return spreadsheet.get_values_until_blankrow (self.wb, "HT-Mails",
                                                       len (self.preferences["Headers"]), 2)
